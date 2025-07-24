@@ -4,6 +4,7 @@ import com.hikmetsuicmez.FoodApp.cart.entity.Cart;
 import com.hikmetsuicmez.FoodApp.order.entity.Order;
 import com.hikmetsuicmez.FoodApp.payment.entity.Payment;
 import com.hikmetsuicmez.FoodApp.review.entity.Review;
+import com.hikmetsuicmez.FoodApp.role.entity.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
