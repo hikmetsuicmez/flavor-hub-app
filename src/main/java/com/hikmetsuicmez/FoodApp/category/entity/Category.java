@@ -1,5 +1,6 @@
 package com.hikmetsuicmez.FoodApp.category.entity;
 
+import com.hikmetsuicmez.FoodApp.menu.entity.Menu;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
