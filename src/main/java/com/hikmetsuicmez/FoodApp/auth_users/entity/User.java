@@ -1,6 +1,8 @@
 package com.hikmetsuicmez.FoodApp.auth_users.entity;
 
 import com.hikmetsuicmez.FoodApp.cart.entity.Cart;
+import com.hikmetsuicmez.FoodApp.order.entity.Order;
+import com.hikmetsuicmez.FoodApp.payment.entity.Payment;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
