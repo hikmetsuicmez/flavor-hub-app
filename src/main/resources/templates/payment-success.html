@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            background: #27ae60;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .greeting {
+            font-size: 18px;
+            color: #2c5530;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .payment-box {
+            background: #f8f9fb;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .payment-box h2 {
+            margin: 0 0 20px 0;
+            font-size: 20px;
+            color: #1a1a1a;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .value {
+            color: #555;
+        }
+
+        .amount-value {
+            font-weight: 600;
+            color: #27ae60;
+        }
+
+        .info-box {
+            background: #f0f8ff;
+            border: 1px solid #d1ecf1;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .info-text {
+            color: #333;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .button {
+            display: block;
+            background: #27ae60;
+            color: white;
+            text-align: center;
+            padding: 16px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 30px 0;
+            transition: background 0.2s;
+        }
+
+        .button:hover {
+            background: #219a52;
+        }
+
+        .note {
+            font-size: 15px;
+            color: #666;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .footer {
+            background: #f8f9fb;
+            padding: 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
+        /* Mobile */
+        @media (max-width: 480px) {
+            .container {
+                margin: 10px;
+                border-radius: 8px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .payment-box, .info-box {
+                padding: 20px;
+            }
+
+            .detail-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Payment Successful</h1>
+    </div>
+
+    <div class="content">
+        <p class="greeting">Dear <span th:text="${customerName}">Customer</span>,</p>
+
+        <p class="message">
+            Thank you for your payment! Your order has been successfully processed and we're preparing your delicious meal.
+        </p>
+
+        <div class="payment-box">
+            <h2>Payment Details</h2>
+
+            <div class="detail-item">
+                <span class="label">Order Number:</span>
+                <span class="value"><span th:text="${orderId}"></span></span>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">Transaction ID:</span>
+                <span class="value" th:text="${transactionId}"></span>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">Payment Date:</span>
+                <span class="value" th:text="${paymentDate}"></span>
+            </div>
+
+            <div class="detail-item">
+                <span class="label">Amount Paid:</span>
+                <span class="amount-value" th:text="${amount}"></span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <p class="info-text">
+                We'll notify you when your order ships. You can check your order status anytime in your account.
+            </p>
+        </div>
+
+        <a class="button" th:href="@{${frontendBaseUrl} + '/my-order-history'}">View Your Order Details</a>
+
+        <p class="note">
+            Your order is now being prepared! We'll send you updates as it progresses.
+        </p>
+    </div>
+
+    <div class="footer">
+        <p><strong>Need help?</strong> Contact us at support@foodapp.com</p>
+        <p>&copy; <span th:text="${currentYear}">2025</span> Your Food App. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
