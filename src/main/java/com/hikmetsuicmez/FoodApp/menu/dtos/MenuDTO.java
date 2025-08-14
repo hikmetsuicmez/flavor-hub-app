@@ -23,9 +23,11 @@ public class MenuDTO {
     private String name;
     private String description;
 
+
     @NotNull(message = "Price is required")
     @Positive(message = "Price must be a positive value")
     private BigDecimal price;
+
     private String imageUrl;
 
     @NotNull(message = "Category ID is required")
