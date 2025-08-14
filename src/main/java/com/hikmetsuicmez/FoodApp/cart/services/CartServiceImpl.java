@@ -107,7 +107,7 @@ public class CartServiceImpl implements CartService {
 
         return Response.builder()
                 .statusCode(HttpStatus.OK.value())
-                .message("Item quantity incremented successfully")
+                .message("Item incremented successfully")
                 .build();
     }
 
@@ -138,7 +138,7 @@ public class CartServiceImpl implements CartService {
 
         return Response.builder()
                 .statusCode(HttpStatus.OK.value())
-                .message("Item quantity decremented successfully")
+                .message("Item decremented successfully")
                 .build();
     }
 
@@ -182,16 +182,20 @@ public class CartServiceImpl implements CartService {
         CartDTO cartDTO = modelMapper.map(cart, CartDTO.class);
 
         BigDecimal totalAmount = BigDecimal.ZERO;
+        int totalQuantity = 0;
+
         if (cartItems != null) {
             for (CartItem cartItem : cartItems) {
                 totalAmount = totalAmount.add(cartItem.getSubTotal());
+                totalQuantity += cartItem.getQuantity();
             }
         }
 
         cartDTO.setTotalAmount(totalAmount);
+        cartDTO.setQuantity(totalQuantity);
 
-        if (cartDTO.getCarItems() != null) {
-            cartDTO.getCarItems()
+        if (cartDTO.getCartItems() != null) {
+            cartDTO.getCartItems()
                     .forEach(item -> item.getMenu().setReviews(null));
         }
 
