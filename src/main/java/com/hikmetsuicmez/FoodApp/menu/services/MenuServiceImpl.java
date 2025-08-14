@@ -88,12 +88,10 @@ public class MenuServiceImpl implements MenuService {
 
 
         if (imageFile != null && !imageFile.isEmpty()) {
-            if (imageUrl != null && !imageUrl.isEmpty()) {
                 String keyName = imageUrl.substring(imageUrl.lastIndexOf("/") + 1);
                 awss3Service.deleteFile("menus/" + keyName);
 
                 log.info("Deleted old menu image from s3" );
-            }
             // Upload new image to S3
             String imageName = UUID.randomUUID().toString() + "_" + imageFile.getOriginalFilename();
             URL newImageUrl = awss3Service.uploadFile("menus/" + imageName, imageFile);
