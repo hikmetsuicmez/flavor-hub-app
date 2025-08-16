@@ -25,7 +25,6 @@ public class ReviewController {
     }
 
     @GetMapping("/menu-item/{menuId}")
-    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Response<List<ReviewDTO>>> getReviewsForMenu(@PathVariable Long menuId) {
         return ResponseEntity.ok(reviewService.getReviewsForMenu(menuId));
     }
