@@ -50,7 +50,7 @@ public class NotificationServiceImpl implements NotificationService {
                     .build();
 
             notificationRepository.save(notificationToSave);
-            log.info("Save to notification table: {}", notificationToSave);
+            log.info("Save to notification table:");
 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
