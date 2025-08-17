@@ -85,5 +85,17 @@ public class ApiEndpoints {
         public static final String DELETE = "/{roleId}"; // Rol silme
     }
 
+    public static final class Category {
+        private Category() {
+        }
+
+        public static final String BASE = "/api/v1/categories";
+        public static final String CREATE = ""; // Kategori oluşturma
+        public static final String UPDATE = ""; // Kategori güncelleme
+        public static final String GET_BY_ID = "/{categoryId}"; // Kategori ID ile getir
+        public static final String GET_ALL = ""; // Tüm kategorileri getir
+        public static final String DELETE = "/{categoryId}"; // Kategori silme
+    }
+
 
 }
