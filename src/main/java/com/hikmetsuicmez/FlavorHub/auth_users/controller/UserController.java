@@ -2,6 +2,7 @@ package com.hikmetsuicmez.FlavorHub.auth_users.controller;
 
 import com.hikmetsuicmez.FlavorHub.auth_users.dtos.UserDTO;
 import com.hikmetsuicmez.FlavorHub.auth_users.services.UserService;
+import com.hikmetsuicmez.FlavorHub.contants.ApiEndpoints;
 import com.hikmetsuicmez.FlavorHub.docs.UserApiDocs;
 import com.hikmetsuicmez.FlavorHub.response.Response;
 import lombok.RequiredArgsConstructor;
@@ -15,18 +16,18 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping(ApiEndpoints.User.BASE)
 public class UserController implements UserApiDocs {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping(ApiEndpoints.User.GET_ALL)
     @PreAuthorize("hasAuthority('ADMIN')")  // Only admin can access this endpoint
     public ResponseEntity<Response<List<UserDTO>>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
-    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(path = ApiEndpoints.User.UPDATE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Response<?>> updateUser(
             @ModelAttribute UserDTO userDTO,
             @RequestPart(value = "imageFile", required = false) MultipartFile imageFile) {
@@ -34,12 +35,12 @@ public class UserController implements UserApiDocs {
         return ResponseEntity.ok(userService.updateOwnAccount(userDTO));
     }
 
-    @DeleteMapping
+    @DeleteMapping(ApiEndpoints.User.DELETE)
     public ResponseEntity<Response<?>> deactivateOwnAccount() {
         return ResponseEntity.ok(userService.deactivateOwnAccount());
     }
 
-    @GetMapping("/account")
+    @GetMapping(ApiEndpoints.User.GET_OWN_ACCOUNT)
     public ResponseEntity<Response<UserDTO>> getOwnAccountDetails() {
         return ResponseEntity.ok(userService.GetOwnAccountDetails());
     }

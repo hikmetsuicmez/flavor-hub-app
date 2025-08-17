@@ -1,5 +1,6 @@
 package com.hikmetsuicmez.FlavorHub.role.controller;
 
+import com.hikmetsuicmez.FlavorHub.contants.ApiEndpoints;
 import com.hikmetsuicmez.FlavorHub.docs.RoleApiDocs;
 import com.hikmetsuicmez.FlavorHub.response.Response;
 import com.hikmetsuicmez.FlavorHub.role.dtos.RoleDTO;
@@ -13,32 +14,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/roles")
+@RequestMapping(ApiEndpoints.Role.BASE)
 @RequiredArgsConstructor
 @PreAuthorize("hasAuthority('ADMIN')")
 public class RoleController implements RoleApiDocs {
 
     private final RoleService roleService;
 
-    @PostMapping
+    @PostMapping(ApiEndpoints.Role.CREATE)
     public ResponseEntity<Response<RoleDTO>> createRole(@RequestBody @Valid RoleDTO roleDTO) {
         Response<RoleDTO> response = roleService.createRole(roleDTO);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
-    @PutMapping
+    @PutMapping(ApiEndpoints.Role.UPDATE)
     public ResponseEntity<Response<RoleDTO>> updateRole(@RequestBody @Valid RoleDTO roleDTO) {
         Response<RoleDTO> response = roleService.updateRole(roleDTO);
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
-    @GetMapping
+    @GetMapping(ApiEndpoints.Role.GET_ALL)
     public ResponseEntity<Response<List<RoleDTO>>> getAllRoles() {
         Response<List<RoleDTO>> response = roleService.getAllRoles();
         return ResponseEntity.status(response.getStatusCode()).body(response);
     }
 
-    @DeleteMapping("/{roleId}")
+    @DeleteMapping(ApiEndpoints.Role.DELETE)
     public ResponseEntity<Response<?>> deleteRole(@PathVariable Long roleId) {
         Response<?> response = roleService.deleteRole(roleId);
         return ResponseEntity.status(response.getStatusCode()).body(response);

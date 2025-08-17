@@ -1,5 +1,6 @@
 package com.hikmetsuicmez.FlavorHub.menu.controller;
 
+import com.hikmetsuicmez.FlavorHub.contants.ApiEndpoints;
 import com.hikmetsuicmez.FlavorHub.docs.MenuApiDocs;
 import com.hikmetsuicmez.FlavorHub.menu.dtos.MenuDTO;
 import com.hikmetsuicmez.FlavorHub.menu.services.MenuService;
@@ -16,12 +17,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/menus")
+@RequestMapping(ApiEndpoints.Menu.BASE)
 public class MenuController implements MenuApiDocs {
 
     private final MenuService menuService;
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = ApiEndpoints.Menu.CREATE,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response<MenuDTO>> createMenu(
             @ModelAttribute @Valid MenuDTO menuDTO,
@@ -31,7 +32,7 @@ public class MenuController implements MenuApiDocs {
         return ResponseEntity.ok(menuService.createMenu(menuDTO));
     }
 
-    @PutMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(path = ApiEndpoints.Menu.UPDATE,consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response<MenuDTO>> updateMenu(
             @ModelAttribute @Valid MenuDTO menuDTO,
@@ -41,18 +42,18 @@ public class MenuController implements MenuApiDocs {
         return ResponseEntity.ok(menuService.updateMenu(menuDTO));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(ApiEndpoints.Menu.GET_BY_ID)
     public ResponseEntity<Response<MenuDTO>> getMenuById(@PathVariable Long id) {
         return ResponseEntity.ok(menuService.getMenuById(id));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(ApiEndpoints.Menu.DELETE)
     @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Response<?>> deleteMenu(@PathVariable Long id) {
         return ResponseEntity.ok(menuService.deleteMenu(id));
     }
 
-    @GetMapping
+    @GetMapping(ApiEndpoints.Menu.GET_ALL)
     public ResponseEntity<Response<List<MenuDTO>>> getMenus(
             @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false) String search) {
