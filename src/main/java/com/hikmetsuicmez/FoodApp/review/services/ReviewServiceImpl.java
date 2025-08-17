@@ -60,7 +60,7 @@ public class ReviewServiceImpl implements ReviewService{
         }
 
         if (order.getOrderStatus() != OrderStatus.DELIVERED) {
-            throw new BadRequestException("You can only review items from delivered orders");
+            throw new BadRequestException("You can only review items that has been delivered to you");
         }
 
         boolean itemInOrder = orderItemRepository.existsByOrderIdAndMenuId(

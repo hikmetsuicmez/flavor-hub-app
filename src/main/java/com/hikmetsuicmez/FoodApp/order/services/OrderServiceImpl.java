@@ -66,6 +66,8 @@ public class OrderServiceImpl implements OrderService {
         log.info("Inside placeOrderFromCart()");
 
         User customer = userService.getCurrentLoggedInUser();
+        log.info("Current user ID: {}", customer.getId());
+        log.info("Current user name: {}", customer.getName());
 
         log.info("user passed: {}", customer.getName());
 
@@ -77,7 +79,7 @@ public class OrderServiceImpl implements OrderService {
             throw new NotFoundException("Delivery address Not Found for the user: " + customer.getName());
         }
 
-        Cart cart = cartRepository.findByUser_Id(customer.getId())
+        Cart cart = cartRepository.findByUser_IdWithItems(customer.getId())
                 .orElseThrow(() -> new NotFoundException("Cart not found for user: " + customer.getName()));
 
         log.info("Cart passed: {}", cart.getId());
@@ -86,7 +88,7 @@ public class OrderServiceImpl implements OrderService {
 
         log.info("Cart items passed: {}", cartItems.size());
 
-        if (cartItems == null || cartItems.isEmpty()) throw new BadRequestException("Cart is empty");
+        if (cartItems.isEmpty()) throw new BadRequestException("Cart is empty");
 
         List<OrderItem> orderItems = new ArrayList<>();
 

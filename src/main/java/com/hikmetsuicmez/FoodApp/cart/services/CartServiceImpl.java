@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,8 +51,13 @@ public class CartServiceImpl implements CartService {
                 .orElseGet(() -> {
                     Cart newCart = new Cart();
                     newCart.setUser(user);
+                    newCart.setCartItems(new ArrayList<>());
                     return cartRepository.save(newCart);
                 });
+
+        if (cart.getCartItems() == null) {
+            cart.setCartItems(new ArrayList<>());
+        }
 
         //  Check if the menu item already exists in the cart
         Optional<CartItem> optionalCartItem = cart.getCartItems().stream()
