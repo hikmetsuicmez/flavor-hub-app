@@ -97,5 +97,16 @@ public class ApiEndpoints {
         public static final String DELETE = "/{categoryId}"; // Kategori silme
     }
 
+    public static final class Payment {
+        private Payment() {
+        }
+
+        public static final String BASE = "/api/v1/payments";
+        public static final String INITIALIZE_PAYMENT = "/pay"; // Ödeme başlatma
+        public static final String UPDATE_PAYMENT = "/update"; // Ödeme güncelleme
+        public static final String GET_ALL_PAYMENTS = "/all"; // Tüm ödemeleri getir
+        public static final String GET_PAYMENT_BY_ID = "/{paymentId}"; // Ödeme ID ile getir
+    }
+
 
 }
