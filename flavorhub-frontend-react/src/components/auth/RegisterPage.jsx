@@ -183,21 +183,10 @@ const RegisterPage = () => {
                         </div>
 
                         <div className="register-social-buttons-foods">
-                            <button className="register-social-button-food register-social-google-food">
-                                <i className="fab fa-google"></i>
-                                Google ile Giriş Yap
-                            </button>
-                            <button className="register-social-button-food register-social-facebook-food">
-                                <i className="fab fa-facebook"></i>
-                                Facebook ile Giriş Yap
-                            </button>
-                            <button className="register-social-button-food register-social-github-food">
-                                <i className="fab fa-github"></i>
-                                Github ile Giriş Yap
-                            </button>
-
+                            <button className="register-social-button-food register-social-google-food">Google</button>
+                            <button className="register-social-button-food register-social-facebook-food">Facebook</button>
+                            <button className="register-social-button-food register-social-github-food">Github</button>
                         </div>
-
                     </div>
                 </div>
             </div>
