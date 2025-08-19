@@ -20,7 +20,7 @@ const Navbar = () => {
     return (
         <nav>
             <div className="logo">
-                <Link to="/" className="logo-link">
+                <Link to="/home" className="logo-link">
                     Flavor Hub
                 </Link>
             </div>
