@@ -19,7 +19,7 @@ code {
 
 /** NAVBAR STYLING*/
 nav {
-  background-color: #ff6600;
+  background-color: #c45308;
   color: white;
   padding: 16px 24px;
   display: flex;
@@ -3652,6 +3652,25 @@ nav {
 }
 
 .error-message {
+  font-size: 0.9rem;
+}
+
+
+/* Success display styling */
+
+.success-display {
+  margin: 1rem 0;
+}
+
+.success-content {
+  background: #d7f5e5;
+  color: #0eb855;
+  padding: 1rem;
+  border-radius: 6px;
+  border-left: 4px solid #0eb855;
+}
+
+.success-message {
   font-size: 0.9rem;
 }
 

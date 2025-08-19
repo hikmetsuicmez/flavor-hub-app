@@ -34,6 +34,13 @@ public class SecurityFilter {
             "/swagger-ui.html"
     };
 
+    private static final String[] PUBLIC_API_PATHS = {
+            "/api/v1/auth/**",
+            "/api/v1/categories/**",
+            "/api/v1/menus/**",
+            "/api/v1/reviews/**"
+    };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -43,7 +50,7 @@ public class SecurityFilter {
                         ex.accessDeniedHandler(customAccessDenialHandler).authenticationEntryPoint(customAuthenticationEntryPoint))
                 .authorizeHttpRequests(req ->
                         req
-                                .requestMatchers("/api/auth/**", "/api/categories/**", "/api/menus/**", "/api/reviews/**").permitAll()
+                                .requestMatchers(PUBLIC_API_PATHS).permitAll()
                                 .requestMatchers(SWAGGER_PATHS).permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(mag -> mag.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
