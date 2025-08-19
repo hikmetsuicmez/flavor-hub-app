@@ -21,7 +21,7 @@ public class ApiEndpoints {
         public static final String BASE = "/api/v1/users";
         public static final String GET_ALL = "/get-all"; // Tüm kullanıcıları getir
         public static final String UPDATE = "/update"; // Kullanıcıyı güncelle
-        public static final String DELETE = "/deactive-own-accont"; // Kullanıcıyı sil
+        public static final String DELETE = "/deactive"; // Kullanıcıyı sil
         public static final String GET_OWN_ACCOUNT = "/account"; // Kendi hesabını getir
     }
 
@@ -29,7 +29,7 @@ public class ApiEndpoints {
         private Cart() {
         }
 
-        public static final String BASE = "/api/v1/cart";
+        public static final String BASE = "/api/v1/carts";
         public static final String ADD_ITEM = "/items"; // Sepete ürün ekleme
         public static final String INCREMENT_ITEM = "/items/increment/{menuId}"; // Ürünü artırma
         public static final String DECREMENT_ITEM = "/items/decrement/{menuId}"; // Ürünü azaltma
@@ -47,7 +47,7 @@ public class ApiEndpoints {
         public static final String GET_BY_ID = "/{menuId}"; // Menü ID ile getir
         public static final String CREATE = ""; // Menü oluşturma
         public static final String UPDATE = ""; // Menü güncelleme
-        public static final String DELETE = ""; // Menü silme
+        public static final String DELETE = "/{menuId}"; // Menü silme
     }
 
     public static final class Order {
@@ -93,7 +93,7 @@ public class ApiEndpoints {
         public static final String CREATE = ""; // Kategori oluşturma
         public static final String UPDATE = ""; // Kategori güncelleme
         public static final String GET_BY_ID = "/{categoryId}"; // Kategori ID ile getir
-        public static final String GET_ALL = ""; // Tüm kategorileri getir
+        public static final String GET_ALL = "get-all"; // Tüm kategorileri getir
         public static final String DELETE = "/{categoryId}"; // Kategori silme
     }
 
@@ -107,6 +107,4 @@ public class ApiEndpoints {
         public static final String GET_ALL_PAYMENTS = "/all"; // Tüm ödemeleri getir
         public static final String GET_PAYMENT_BY_ID = "/{paymentId}"; // Ödeme ID ile getir
     }
-
-
 }

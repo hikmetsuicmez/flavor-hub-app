@@ -43,14 +43,14 @@ public class MenuController implements MenuApiDocs {
     }
 
     @GetMapping(ApiEndpoints.Menu.GET_BY_ID)
-    public ResponseEntity<Response<MenuDTO>> getMenuById(@PathVariable Long id) {
-        return ResponseEntity.ok(menuService.getMenuById(id));
+    public ResponseEntity<Response<MenuDTO>> getMenuById(@PathVariable Long menuId) {
+        return ResponseEntity.ok(menuService.getMenuById(menuId));
     }
 
     @DeleteMapping(ApiEndpoints.Menu.DELETE)
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<Response<?>> deleteMenu(@PathVariable Long id) {
-        return ResponseEntity.ok(menuService.deleteMenu(id));
+    public ResponseEntity<Response<?>> deleteMenu(@PathVariable Long menuId) {
+        return ResponseEntity.ok(menuService.deleteMenu(menuId));
     }
 
     @GetMapping(ApiEndpoints.Menu.GET_ALL)
