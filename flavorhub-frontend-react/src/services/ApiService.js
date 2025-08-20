@@ -167,6 +167,16 @@ export default class ApiService {
         return response.data;
     }
 
+    static async getAllMenuByCategoryId(categoryId) {
+        const response = await axios.get(`${this.BASE_URL}/menus/get-all`, {
+            params: {
+                categoryId: categoryId
+            },
+            headers: this.getHeader()
+        })
+        return response.data;
+    }
+
     static async getMenuById(menuId) {
         const response = await axios.get(`${this.BASE_URL}/menus/${menuId}`, {
             headers: this.getHeader()
@@ -197,6 +207,16 @@ export default class ApiService {
                 ...this.getHeader(),
                 "Content-Type": "multipart/form-data"
             }
+        })
+        return response.data;
+    }
+
+    static async searchMenu(searchTerm) {
+        const response = await axios.get(`${this.BASE_URL}/menus`, {
+            params: {
+                searchTerm: searchTerm
+            },
+            headers: this.getHeader()
         })
         return response.data;
     }
