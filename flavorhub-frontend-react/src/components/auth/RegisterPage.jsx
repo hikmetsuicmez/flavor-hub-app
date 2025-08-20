@@ -11,6 +11,7 @@ const RegisterPage = () => {
     const [formData, setFormData] = useState({
 
         name: "",
+        surname: "",
         email: "",
         password: "",
         phoneNumber: "",
@@ -28,6 +29,7 @@ const RegisterPage = () => {
 
         if (
             !formData.name ||
+            !formData.surname ||
             !formData.email ||
             !formData.password ||
             !formData.phoneNumber ||
@@ -46,6 +48,7 @@ const RegisterPage = () => {
         const registrationData = {
 
             name: formData.name,
+            surname: formData.surname,
             email: formData.email,
             password: formData.password,
             phoneNumber: formData.phoneNumber,
@@ -58,7 +61,7 @@ const RegisterPage = () => {
             if (response.statusCode === 200) {
                 showSuccess("Kayıt başarıyla tamamlandı! Yönlendiriliyorsunuz...");
                 setFormData({
-                    name: "", email: "", password: "", phoneNumber: "", address: "", confirmPassword: ""
+                    name: "", surname: "", email: "", password: "", phoneNumber: "", address: "", confirmPassword: ""
                 });
                 setTimeout(() => {
                     navigate("/login");
@@ -83,7 +86,7 @@ const RegisterPage = () => {
                 <div className="register-content-food">
                     <form className="register-form-food" onSubmit={handleSubmit}>
                         <div className="register-form-group">
-                            <label htmlFor="name" className="register-label-food">Adınız ve Soyadınız</label>
+                            <label htmlFor="name" className="register-label-food">Adınız</label>
                             <input
                                 type="text"
                                 id="name"
@@ -91,7 +94,20 @@ const RegisterPage = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                placeholder="Adınız ve Soyadınız"
+                                placeholder="Adınız"
+                                className="register-input-food"
+                            />
+                        </div>
+                        <div className="register-form-group">
+                            <label htmlFor="surname" className="register-label-food">Soyadınız</label>
+                            <input
+                                type="text"
+                                id="surname"
+                                name="surname"
+                                value={formData.surname}
+                                onChange={handleChange}
+                                required
+                                placeholder="Soyadınız"
                                 className="register-input-food"
                             />
                         </div>

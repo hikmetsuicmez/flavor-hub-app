@@ -32,7 +32,7 @@ public class AuthServiceImpl implements  AuthService {
 
     @Override
     public Response<?> register(RegistrationRequest registrationRequest) {
-        log.info("INSIDE regiser()");
+        log.info("INSIDE register()");
 
         if (userRepository.existsByEmail(registrationRequest.getEmail())) {
             throw new BadRequestException("Email already exists");
@@ -60,6 +60,7 @@ public class AuthServiceImpl implements  AuthService {
         // build the user object
         User userToSave = User.builder()
                 .name(registrationRequest.getName())
+                .surname(registrationRequest.getSurname())
                 .email(registrationRequest.getEmail())
                 .phoneNumber(registrationRequest.getPhoneNumber())
                 .address(registrationRequest.getAddress())

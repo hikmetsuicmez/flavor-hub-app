@@ -3220,6 +3220,7 @@ nav {
 
 .back-button:hover {
   background: #c1121f;
+  color: white;
   transform: translateY(-2px);
 }
 

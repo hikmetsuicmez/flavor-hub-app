@@ -77,7 +77,7 @@ export default class ApiService {
     /**USERS PROFILE MANAGEMENT SECTION */
 
     static async getAllUsers() {
-        const response = await axios.get(`${this.BASE_URL}`, {
+        const response = await axios.get(`${this.BASE_URL}/users/get-all`, {
             headers: this.getHeader()
         })
         return response.data;
@@ -328,7 +328,7 @@ export default class ApiService {
         return response.data;
     }
 
-    static async getAverageRating(menuId) {
+    static async getMenuAverageOverallReview(menuId) {
         const response = await axios.get(`${this.BASE_URL}/reviews/menu-item/${menuId}/average-rating`, {
             headers: this.getHeader()
         })

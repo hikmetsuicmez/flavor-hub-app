@@ -6,6 +6,8 @@ import LoginPage from "./components/auth/LoginPage";
 import HomePage from "./components/home_menu/HomePage";
 import CategoriesPage from "./components/home_menu/CategoriesPage";
 import MenuPage from "./components/home_menu/MenuPage";
+import MenuDetailsPage from "./components/home_menu/MenuDetailsPage";
+import ProfilePage from "./components/profile_cart/ProfilePage";
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
 
           {/* MENU PAGE */}
           <Route path="/menu" element={<MenuPage />} />
+          <Route path="/menu/:id" element={<MenuDetailsPage />} />
+
+          {/* PROFILE PAGE */}
+          <Route path="/profile" element={<ProfilePage />} />
         </Routes>
       </div>
       <Footer />
