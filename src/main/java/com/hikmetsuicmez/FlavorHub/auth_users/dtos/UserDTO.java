@@ -21,8 +21,8 @@ public class UserDTO {
     private String phoneNumber;
     private String profileUrl;
 
-    // Write-only: Included when receiving data, excluded when sending data
-    // //Only used for writing, not reading
+    // Yalnızca yazma amaçlı: Veri alınırken dahil edilir, veri gönderirken hariç tutulur
+    // Sadece yazmak için kullanılır, okumak için kullanılmaz
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -34,5 +34,4 @@ public class UserDTO {
 
     private MultipartFile imageFile;
 
-    // Additional fields can be added as needed
 }

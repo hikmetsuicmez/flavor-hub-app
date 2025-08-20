@@ -97,28 +97,34 @@ public class UserServiceImpl implements UserService {
             URL newImageUrl = awsS3Service.uploadFile("profile/" + imageName, imageFile);
             user.setProfileUrl(newImageUrl.toString());
         }
+
         // update user details
 
-        if (userDTO.getName() != null) user.setName(user.getName());
-        if (userDTO.getPhoneNumber() != null) user.setPhoneNumber(user.getPhoneNumber());
-        if (userDTO.getAddress() != null) user.setAddress(user.getAddress());
-        if (userDTO.getPassword() != null) user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (userDTO.getName() != null) user.setName(userDTO.getName());
+        if (userDTO.getSurname() != null) user.setSurname(userDTO.getSurname());
+        if (userDTO.getPhoneNumber() != null) user.setPhoneNumber(userDTO.getPhoneNumber());
+        if (userDTO.getAddress() != null) user.setAddress(userDTO.getAddress());
+
 
         if (userDTO.getEmail() != null && !userDTO.getEmail().equals(user.getEmail())) {
+            // Var olan email ile yeni emaili karşılaştır
             if (userRepository.existsByEmail(userDTO.getEmail())) {
                 throw new BadRequestException("Email already exists");
             }
+            user.setEmail(userDTO.getEmail());
         }
-        user.setEmail(userDTO.getEmail());
+
+        if (userDTO.getPassword() != null) user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+
 
         // save the user
         userRepository.save(user);
+
 
         return Response.builder()
                 .statusCode(HttpStatus.OK.value())
                 .message("Account updated successfully")
                 .build();
-
     }
 
     @Override

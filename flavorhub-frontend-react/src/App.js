@@ -8,6 +8,7 @@ import CategoriesPage from "./components/home_menu/CategoriesPage";
 import MenuPage from "./components/home_menu/MenuPage";
 import MenuDetailsPage from "./components/home_menu/MenuDetailsPage";
 import ProfilePage from "./components/profile_cart/ProfilePage";
+import UpdateProfilePage from "./components/profile_cart/UpdateProfilePage";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
 
           {/* PROFILE PAGE */}
           <Route path="/profile" element={<ProfilePage />} />
+
+          {/* UPDATE PROFILE PAGE */}
+          <Route path="/update" element={<UpdateProfilePage />} />
         </Routes>
       </div>
       <Footer />
