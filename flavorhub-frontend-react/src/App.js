@@ -10,6 +10,7 @@ import MenuDetailsPage from "./components/home_menu/MenuDetailsPage";
 import ProfilePage from "./components/profile_cart/ProfilePage";
 import UpdateProfilePage from "./components/profile_cart/UpdateProfilePage";
 import OrderHistoryPage from "./components/profile_cart/OrderHistoryPage";
+import LeaveReviewPage from "./components/profile_cart/LeaveReviewPage";
 import { AdminRoute, CustomerRoute } from "./services/Guard";
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
 
           {/* ORDER HISTORY PAGE */}
           <Route path="/my-order-history" element={<CustomerRoute element={<OrderHistoryPage />} />} />
+
+          {/* LEAVE REVIEW PAGE */}
+          <Route path="/leave-review" element={<CustomerRoute element={<LeaveReviewPage />} />} />
 
           <Route path="*" element={<Navigate to={"/home"} />}></Route>
 

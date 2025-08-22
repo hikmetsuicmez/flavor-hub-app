@@ -31,8 +31,32 @@ const OrderHistoryPage = () => {
 
                     const enhancedOrders = [];
                     for (const order of ordersData) {
-                        // Order items zaten mevcut, ekstra API çağrısına gerek yok
-                        enhancedOrders.push(order);
+                        // Her order item için review kontrolü yap
+                        const enhancedItems = [];
+                        if (order.orderItems && Array.isArray(order.orderItems)) {
+                            for (const item of order.orderItems) {
+                                try {
+                                    // Bu sipariş için yorum yapılıp yapılmadığını kontrol et
+                                    const reviewResponse = await ApiService.getReviewsByMenuId(item.menuId || item.menu?.id);
+                                    const hasReview = reviewResponse.statusCode === 200 &&
+                                        reviewResponse.data.some(review =>
+                                            review.orderId === order.id
+                                        );
+
+                                    enhancedItems.push({
+                                        ...item,
+                                        hasReview: hasReview || false
+                                    });
+                                } catch (error) {
+                                    console.error('Error checking review:', error);
+                                    enhancedItems.push({
+                                        ...item,
+                                        hasReview: false
+                                    });
+                                }
+                            }
+                        }
+                        enhancedOrders.push({ ...order, orderItems: enhancedItems });
                     }
                     setOrders(enhancedOrders);
                 }
