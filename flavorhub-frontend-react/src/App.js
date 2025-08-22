@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import RegisterPage from "./components/auth/RegisterPage";
@@ -9,6 +9,8 @@ import MenuPage from "./components/home_menu/MenuPage";
 import MenuDetailsPage from "./components/home_menu/MenuDetailsPage";
 import ProfilePage from "./components/profile_cart/ProfilePage";
 import UpdateProfilePage from "./components/profile_cart/UpdateProfilePage";
+import OrderHistoryPage from "./components/profile_cart/OrderHistoryPage";
+import { AdminRoute, CustomerRoute } from "./services/Guard";
 
 function App() {
   return (
@@ -31,10 +33,16 @@ function App() {
           <Route path="/menu/:id" element={<MenuDetailsPage />} />
 
           {/* PROFILE PAGE */}
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<CustomerRoute element={<ProfilePage />} />} />
 
           {/* UPDATE PROFILE PAGE */}
-          <Route path="/update" element={<UpdateProfilePage />} />
+          <Route path="/update" element={<CustomerRoute element={<UpdateProfilePage />} />} />
+
+          {/* ORDER HISTORY PAGE */}
+          <Route path="/my-order-history" element={<CustomerRoute element={<OrderHistoryPage />} />} />
+
+          <Route path="*" element={<Navigate to={"/home"} />}></Route>
+
         </Routes>
       </div>
       <Footer />
