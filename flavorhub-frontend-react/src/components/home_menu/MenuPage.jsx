@@ -29,6 +29,7 @@ const MenuPage = () => {
                 }
 
                 if (response.statusCode === 200) {
+
                     setMenus(response.data);
 
                 } else {
@@ -100,7 +101,12 @@ const MenuPage = () => {
                         <div className="menu-item-content">
                             <h2 className="menu-item-name">{item.name}</h2>
                             <p className="menu-item-description">{item.description}</p>
-                            <p className="menu-item-price">{item.price.toFixed(2)}</p>
+                            <p className="menu-item-price">
+                                {typeof item.price === 'string'
+                                    ? parseFloat(item.price.replace(/[^\d.,]/g, '')).toFixed(2)
+                                    : (item.price || 0).toFixed(2)
+                                } TL
+                            </p>
                         </div>
 
                     </div>

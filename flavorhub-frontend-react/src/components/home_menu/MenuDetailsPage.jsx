@@ -113,7 +113,12 @@ const MenuDetailsPage = () => {
                     <p className="menu-item-description">{menu.description}</p>
 
                     <div className="menu-item-price-rating">
-                        <span className="price">{menu.price.toFixed(2)}</span>
+                        <span className="price">
+                            {typeof menu.price === 'string'
+                                ? parseFloat(menu.price.replace(/[^\d.,]/g, '')).toFixed(2)
+                                : (menu.price || 0).toFixed(2)
+                            } TL
+                        </span>
                         <div className="rating">
                             <span className="rating-value">{averageRating.toFixed(1)}</span>
                             <span className="rating-star">★</span>

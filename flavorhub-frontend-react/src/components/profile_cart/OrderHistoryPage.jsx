@@ -138,7 +138,11 @@ const OrderHistoryPage = () => {
                                         <div className="item-details">
                                             <span className="item-name">{item.menu?.name || item.name || 'Bilinmeyen Ürün'}</span>
                                             <span className="item-quantity">Adet: {item.quantity || 1}</span>
-                                            <span className="item-price">Fiyat: {(item.menu?.price || item.price || 0).toFixed(2)} TL</span>
+                                            <span className="item-price">Fiyat: {
+                                                typeof (item.menu?.price || item.price) === 'string'
+                                                    ? parseFloat((item.menu?.price || item.price).replace(/[^\d.,]/g, '')).toFixed(2)
+                                                    : ((item.menu?.price || item.price) || 0).toFixed(2)
+                                            } TL</span>
                                             <span className="subtotal">Toplam: {calculateItemSubtotal(item).toFixed(2)} TL</span>
                                             {(order.orderStatus || order.status || '').toLowerCase() === 'delivered' && !item.hasReview && (
                                                 <button
