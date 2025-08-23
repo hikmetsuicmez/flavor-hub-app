@@ -11,6 +11,7 @@ import ProfilePage from "./components/profile_cart/ProfilePage";
 import UpdateProfilePage from "./components/profile_cart/UpdateProfilePage";
 import OrderHistoryPage from "./components/profile_cart/OrderHistoryPage";
 import LeaveReviewPage from "./components/profile_cart/LeaveReviewPage";
+import CartPage from "./components/profile_cart/CartPage";
 import { AdminRoute, CustomerRoute } from "./services/Guard";
 
 function App() {
@@ -45,8 +46,17 @@ function App() {
           {/* LEAVE REVIEW PAGE */}
           <Route path="/leave-review" element={<CustomerRoute element={<LeaveReviewPage />} />} />
 
-          <Route path="*" element={<Navigate to={"/home"} />}></Route>
+          {/* CART PAGE */}
+          <Route path="/cart" element={<CustomerRoute element={<CartPage />} />} />
 
+
+
+
+
+
+
+
+          <Route path="*" element={<Navigate to={"/home"} />}></Route>
         </Routes>
       </div>
       <Footer />

@@ -10,6 +10,17 @@ const OrderHistoryPage = () => {
     const { ErrorDisplay, SuccessDisplay, showError, showSuccess } = useError();
     const navigate = useNavigate();
 
+    // Helper function to calculate item subtotal
+    const calculateItemSubtotal = (item) => {
+        return (item.menu?.price || item.price || 0) * (item.quantity || 1);
+    };
+
+    // Helper function to calculate order total
+    const calculateOrderTotal = (order) => {
+        if (!order.orderItems || !Array.isArray(order.orderItems)) return 0;
+        return order.orderItems.reduce((total, item) => total + calculateItemSubtotal(item), 0);
+    };
+
 
     useEffect(() => {
         const fetchOrders = async () => {
@@ -117,7 +128,7 @@ const OrderHistoryPage = () => {
                             <span className="order-id">Sipariş No: {order.id}</span>
                             <span className="order-date">Tarih: {formatDate(order.orderDate || order.createdAt || new Date())}</span>
                             <span className="order-status">Durum: <span className={`status-${(order.orderStatus || order.status || 'UNKNOWN').toLowerCase()}`}>{order.orderStatus || order.status || 'UNKNOWN'}</span></span>
-                            <span className="order-total">Toplam: {(order.totalAmount || 0).toFixed(2)} TL</span>
+                            <span className="order-total">Toplam: {calculateOrderTotal(order).toFixed(2)} TL</span>
                         </div>
                         <div className="order-items">
                             <h2 className="order-items-title">Sipariş Ögeleri: </h2>
@@ -128,7 +139,7 @@ const OrderHistoryPage = () => {
                                             <span className="item-name">{item.menu?.name || item.name || 'Bilinmeyen Ürün'}</span>
                                             <span className="item-quantity">Adet: {item.quantity || 1}</span>
                                             <span className="item-price">Fiyat: {(item.menu?.price || item.price || 0).toFixed(2)} TL</span>
-                                            <span className="item-subtotal">Toplam: {((item.menu?.price || item.price || 0) * (item.quantity || 1)).toFixed(2)} TL</span>
+                                            <span className="subtotal">Toplam: {calculateItemSubtotal(item).toFixed(2)} TL</span>
                                             {(order.orderStatus || order.status || '').toLowerCase() === 'delivered' && !item.hasReview && (
                                                 <button
                                                     className="review-button"

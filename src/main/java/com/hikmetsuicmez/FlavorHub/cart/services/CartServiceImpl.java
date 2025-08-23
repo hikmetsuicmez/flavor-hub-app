@@ -176,7 +176,7 @@ public class CartServiceImpl implements CartService {
     @Override
     @Transactional(readOnly = true)
     public Response<CartDTO> getShoppingCart() {
-        log.info("Inside getShoppingCar()");
+        log.info("Inside getShoppingCart()");
 
         User user = userService.getCurrentLoggedInUser();
 

@@ -118,21 +118,21 @@ export default class ApiService {
         return response.data;
     }
 
-    static async incrementCartItem(menuId) {
-        const response = await axios.post(`${this.BASE_URL}/carts/items/increment/${menuId}`, {
+    static async incrementItem(menuId) {
+        const response = await axios.put(`${this.BASE_URL}/carts/items/increment/${menuId}`, {}, {
             headers: this.getHeader()
         })
         return response.data;
     }
 
-    static async decrementCartItem(menuId) {
-        const response = await axios.post(`${this.BASE_URL}/carts/items/decrement/${menuId}`, {
+    static async decrementItem(menuId) {
+        const response = await axios.put(`${this.BASE_URL}/carts/items/decrement/${menuId}`, {}, {
             headers: this.getHeader()
         })
         return response.data;
     }
 
-    static async removeCartItem(cartItemId) {
+    static async removeItem(cartItemId) {
         const response = await axios.delete(`${this.BASE_URL}/carts/items/${cartItemId}`, {
             headers: this.getHeader()
         })
@@ -340,7 +340,7 @@ export default class ApiService {
     // ORDER MANAGEMENT SECTION
 
     static async createOrder() {
-        const response = await axios.post(`${this.BASE_URL}/orders/checkout`, {
+        const response = await axios.post(`${this.BASE_URL}/orders/checkout`, {}, {
             headers: this.getHeader()
         })
         return response.data;
