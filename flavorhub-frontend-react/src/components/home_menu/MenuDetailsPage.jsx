@@ -63,8 +63,6 @@ const MenuDetailsPage = () => {
                 }, 3000);
             }
 
-            showSuccess("Sepete eklendi!");
-
         } catch (error) {
             showError(error.response?.data?.message || error.message);
         }
