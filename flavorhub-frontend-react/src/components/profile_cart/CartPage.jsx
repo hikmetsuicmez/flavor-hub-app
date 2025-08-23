@@ -131,7 +131,11 @@ const CartPage = () => {
                         <div className="item-details">
                             <h2 className="item-name">{item.menu.name}</h2>
                             <p className="item-description">{item.menu.description}</p>
-                            <p className="item-price">Fiyat: {(item.menu.price).toFixed(2)} TL</p>
+                            <p className="item-price">Fiyat: {
+                                typeof item.menu.price === 'string'
+                                    ? parseFloat(item.menu.price.replace(/[^\d.,]/g, '')).toFixed(2)
+                                    : (item.menu.price || 0).toFixed(2)
+                            } TL</p>
 
                             <div className="quantity-controls">
                                 <button

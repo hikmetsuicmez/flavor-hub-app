@@ -173,8 +173,8 @@ nav {
   font-size: 15px;
   font-weight: 500;
   line-height: 1.5;
-  color: #ff6600;
-  #color: green;
+  color: #0eb855;
+  /* color: green; */
 }
 
 /* Progress Bar Animation */
@@ -1288,7 +1288,7 @@ nav {
 
 
 .menu-item-price::before {
-  content: '$';
+  content: '';
   font-size: 0.9em;
   margin-right: 2px;
 }
