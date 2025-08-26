@@ -47,6 +47,8 @@ const CartPage = () => {
             const response = await ApiService.incrementItem(menuId);
             if (response.statusCode === 200) {
                 fetchCart();
+                // Navbar'ı güncellemek için custom event gönder
+                window.dispatchEvent(new CustomEvent('cartUpdated'));
             }
         } catch (error) {
             showError(error.response?.data?.message || error.message);
@@ -58,6 +60,8 @@ const CartPage = () => {
             const response = await ApiService.decrementItem(menuId);
             if (response.statusCode === 200) {
                 fetchCart();
+                // Navbar'ı güncellemek için custom event gönder
+                window.dispatchEvent(new CustomEvent('cartUpdated'));
             }
         } catch (error) {
             showError(error.response?.data?.message || error.message);
@@ -69,6 +73,8 @@ const CartPage = () => {
             const response = await ApiService.removeItem(cartItemId);
             if (response.statusCode === 200) {
                 fetchCart();
+                // Navbar'ı güncellemek için custom event gönder
+                window.dispatchEvent(new CustomEvent('cartUpdated'));
             }
         } catch (error) {
             showError(error.response?.data?.message || error.message);
@@ -81,6 +87,8 @@ const CartPage = () => {
             const response = await ApiService.createOrder();
             if (response.statusCode === 200) {
                 setMessage(response.message);
+                // Navbar'ı güncellemek için custom event gönder
+                window.dispatchEvent(new CustomEvent('cartUpdated'));
                 setTimeout(() => {
                     setMessage(null);
                     fetchCart();
