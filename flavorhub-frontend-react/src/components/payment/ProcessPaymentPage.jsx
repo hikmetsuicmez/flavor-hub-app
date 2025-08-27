@@ -14,16 +14,11 @@ const ProcessPaymentPage = () => {
 
     const [orderDetails, setOrderDetails] = useState({
         orderId: '',
-        amount: 0,
-        orderItems: [],
-        orderDate: '',
-        status: ''
+        amount: 0
     });
 
-
-
     useEffect(() => {
-        const orderId = searchParams.get('orderId');
+        const orderId = searchParams.get('orderid');
         const amount = searchParams.get('amount');
 
         console.log("URL'den gelen parametreler:", { orderId, amount });
@@ -52,9 +47,6 @@ const ProcessPaymentPage = () => {
                 setOrderDetails({
                     orderId: orderId,
                     amount: amount,
-                    orderItems: order.orderItems || [],
-                    orderDate: order.createdAt || order.orderDate || '',
-                    status: order.status || ''
                 });
                 // console.log("Sipariş detayları:", order);
             } else {
@@ -66,9 +58,6 @@ const ProcessPaymentPage = () => {
             setOrderDetails({
                 orderId: orderId,
                 amount: amount,
-                orderItems: [],
-                orderDate: '',
-                status: ''
             });
         }
     };
@@ -142,37 +131,6 @@ const ProcessPaymentPage = () => {
                 <div className="order-total">
                     <h3>Toplam Tutar: {orderDetails.amount.toFixed(2)} TL</h3>
                 </div>
-            </div>
-
-            {/* Debug Bilgileri */}
-            <div style={{ background: '#f0f0f0', padding: '10px', margin: '10px 0', borderRadius: '5px' }}>
-                <h3>Debug Bilgileri:</h3>
-                <p><strong>orderId:</strong> {orderDetails.orderId}</p>
-                <p><strong>amount:</strong> {orderDetails.amount}</p>
-                <p><strong>orderItems length:</strong> {orderDetails.orderItems?.length || 0}</p>
-                <p><strong>orderDate:</strong> {orderDetails.orderDate}</p>
-                <p><strong>status:</strong> {orderDetails.status}</p>
-
-                {/* Test Butonu */}
-                <button
-                    onClick={() => {
-                        const testOrderId = 'test123';
-                        const testAmount = 50.00;
-                        console.log('Test butonu tıklandı:', { testOrderId, testAmount });
-                        fetchOrderDetails(testOrderId, testAmount);
-                    }}
-                    style={{
-                        background: '#007bff',
-                        color: 'white',
-                        border: 'none',
-                        padding: '10px 20px',
-                        borderRadius: '5px',
-                        cursor: 'pointer',
-                        marginTop: '10px'
-                    }}
-                >
-                    Test Sipariş Detayları Çek
-                </button>
             </div>
 
             <Payment

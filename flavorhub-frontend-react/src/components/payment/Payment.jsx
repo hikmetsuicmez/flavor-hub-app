@@ -17,10 +17,16 @@ const PaymentForm = ({ amount, orderId, onSuccess }) => {
     const [loading, setLoading] = useState(false);
     const { ErrorDisplay, SuccessDisplay, showError, showSuccess } = useError();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
         if (!stripe || !elements) {
+            return;
+        }
+
+        // Token kontrolü ekleyin
+        if (!ApiService.isAuthenticated()) {
+            showError("Oturum süreniz dolmuş. Lütfen tekrar giriş yapın.");
             return;
         }
 
@@ -32,9 +38,11 @@ const PaymentForm = ({ amount, orderId, onSuccess }) => {
                 amount: amount,
                 orderId: orderId
             }
+            console.log("Ödeme isteği gönderiliyor:", body);
             const paymentInitializeResponse = await ApiService.initializePayment(body);
+            console.log("Ödeme response:", paymentInitializeResponse);
 
-            if (paymentInitializeResponse.status !== 200) {
+            if (paymentInitializeResponse.statusCode !== 200) {
 
                 throw new Error(paymentInitializeResponse.message || "Ödeme başarısız oldu");
             }
@@ -57,8 +65,8 @@ const PaymentForm = ({ amount, orderId, onSuccess }) => {
 
             if (paymentIntent.status === "succeeded") {
                 console.log("ÖDEME BAŞARILI")
-                // Step 3: Ödeme başarılı olduğunda payment tablosunu güncelle
 
+                // Step 3: Ödeme başarılı olduğunda payment tablosunu güncelle
                 const response = ApiService.updatePayment({
                     orderId,
                     amount,
@@ -81,7 +89,23 @@ const PaymentForm = ({ amount, orderId, onSuccess }) => {
 
         } catch (error) {
             console.log("Ödeme hatası: ", error);
-            showError(error.message);
+
+            // Daha detaylı hata bilgisi
+            if (error.response) {
+                console.log("Server response:", error.response.data);
+                console.log("Status:", error.response.status);
+
+                // Backend'den gelen hata mesajını göster
+                const errorMessage = error.response.data.message ||
+                    error.response.data.error ||
+                    'Bilinmeyen sunucu hatası';
+                showError(`Sunucu hatası: ${errorMessage}`);
+            } else if (error.request) {
+                console.log("Request error:", error.request);
+                showError("Sunucuya bağlanılamıyor. Lütfen internet bağlantınızı kontrol edin.");
+            } else {
+                showError(error.message || "Beklenmeyen bir hata oluştu");
+            }
         } finally {
             setLoading(false);
         }
@@ -96,7 +120,7 @@ const PaymentForm = ({ amount, orderId, onSuccess }) => {
                 <CardElement />
             </div>
 
-            <button type="submit" disabled={!stripe || loading} className="form-button btn btn-primary">
+            <button type="submit" disabled={!stripe || loading} className="pay-button">
                 {loading ? "Ödeme yapılıyor..." : `Ödeme yap (${amount} TL)`}
             </button>
         </form>
