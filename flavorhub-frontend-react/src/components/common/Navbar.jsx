@@ -95,7 +95,6 @@ const Navbar = () => {
                             <div className="user-nav">
                                 {isCustomer && (
                                     <>
-                                        <Link to="/orders" className="nav-link">Siparişlerim</Link>
                                         <Link to="/cart" className="nav-link cart-link">
                                             Sepetim
                                             {cartItemCount > 0 && (
@@ -156,7 +155,6 @@ const Navbar = () => {
                         <>
                             {isCustomer && (
                                 <>
-                                    <Link to="/orders" className="mobile-nav-link">Siparişlerim</Link>
                                     <Link to="/cart" className="mobile-nav-link">
                                         Sepetim
                                         {cartItemCount > 0 && (
