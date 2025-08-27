@@ -14,6 +14,7 @@ import com.hikmetsuicmez.FlavorHub.payment.entity.Payment;
 import com.hikmetsuicmez.FlavorHub.payment.repository.PaymentRepository;
 import com.hikmetsuicmez.FlavorHub.response.Response;
 import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
 import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -76,9 +78,11 @@ public class PaymentServiceImpl implements PaymentService {
         try {
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
                     .setAmount(paymentRequest.getAmount().multiply(BigDecimal.valueOf(100)).longValue()) // converting to cent in USD
-                    .setCurrency("try")
+                    .setCurrency("eur")
                     .putMetadata("orderId", String.valueOf(orderId))
                     .build();
+
+
 
             PaymentIntent intent = PaymentIntent.create(params);
             String uniqueTransactionId = intent.getClientSecret();
@@ -89,8 +93,12 @@ public class PaymentServiceImpl implements PaymentService {
                     .data(uniqueTransactionId)
                     .build();
 
+        } catch (StripeException e) {
+            log.error("Stripe error: ", e);
+            throw new BadRequestException("Payment service error: " + e.getMessage());
         } catch (Exception e) {
-            throw new RuntimeException("Error Creating payment unique transaction ID");
+            log.error("Unexpected error: ", e);
+            throw new InternalAuthenticationServiceException("Unexpected error occurred");
         }
     }
 

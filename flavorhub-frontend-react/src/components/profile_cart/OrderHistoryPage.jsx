@@ -128,7 +128,7 @@ const OrderHistoryPage = () => {
                             <span className="order-id">Sipariş No: {order.id}</span>
                             <span className="order-date">Tarih: {formatDate(order.orderDate || order.createdAt || new Date())}</span>
                             <span className="order-status">Durum: <span className={`status-${(order.orderStatus || order.status || 'UNKNOWN').toLowerCase()}`}>{order.orderStatus || order.status || 'UNKNOWN'}</span></span>
-                            <span className="order-total">Toplam: {calculateOrderTotal(order).toFixed(2)} TL</span>
+                            <span>Toplam: {calculateOrderTotal(order).toFixed(2)} TL</span>
                         </div>
                         <div className="order-items">
                             <h2 className="order-items-title">Sipariş Ögeleri: </h2>

@@ -4,6 +4,7 @@ export default class ApiService {
 
     static BASE_URL = "http://localhost:6161/api/v1";
 
+
     static saveToken(token) {
         localStorage.setItem("token", token);
     }
