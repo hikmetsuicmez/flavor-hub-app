@@ -58,6 +58,8 @@ const MenuDetailsPage = () => {
 
             if (response.statusCode === 200) {
                 setCartSuccess(true);
+                // Navbar'ı güncellemek için custom event gönder
+                window.dispatchEvent(new CustomEvent('cartUpdated'));
                 setTimeout(() => {
                     setCartSuccess(false);
                 }, 3000);
