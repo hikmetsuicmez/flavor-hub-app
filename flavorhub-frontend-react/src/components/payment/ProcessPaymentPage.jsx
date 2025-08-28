@@ -69,7 +69,7 @@ const ProcessPaymentPage = () => {
 
         setTimeout(() => {
             navigate('/my-order-history');
-        }, 3000);
+        }, 6000);
     };
 
     if (paymentCompleted) {

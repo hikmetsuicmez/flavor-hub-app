@@ -89,6 +89,7 @@ const CartPage = () => {
                 setMessage(response.message);
                 // Navbar'ı güncellemek için custom event gönder
                 window.dispatchEvent(new CustomEvent('cartUpdated'));
+                showSuccess("Siparişiniz oluşturuldu. Yönlendiriliyorsunuz...");
                 setTimeout(() => {
                     setMessage(null);
                     fetchCart();
