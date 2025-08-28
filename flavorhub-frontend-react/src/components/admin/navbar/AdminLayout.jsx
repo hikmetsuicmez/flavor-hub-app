@@ -1,0 +1,21 @@
+import AdminSidebar from "./AdminSidebar";
+import AdminTopbar from "./AdminTopbar";
+
+const AdminLayout = () => {
+
+
+
+    return (
+        <div className="admin-layout">
+            <AdminSideBar />
+            <div className="admin-main">
+                <AdminTopbar />
+                <div className="admin-content">
+                    <Outlet />
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default AdminLayout;

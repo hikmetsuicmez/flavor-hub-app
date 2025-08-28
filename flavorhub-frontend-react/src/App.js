@@ -54,7 +54,10 @@ function App() {
           <Route path="/pay" element={<CustomerRoute element={<ProcessPaymentPage />} />} />
 
 
+          {/* ADMIN ROUTES */}
+          <Route path="/admin" element={<AdminRoute element={<AdminLayout />} />} >
 
+          </Route>
 
 
 
