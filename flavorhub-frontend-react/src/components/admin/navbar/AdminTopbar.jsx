@@ -42,7 +42,7 @@ const AdminTopbar = () => {
     return (
         <header className="admin-topbar">
             <div className="topbar-left">
-                <button onClick={toggleSidebar}>
+                <button onClick={toggleSidebar} className="sidebar-toggle">
                     <FontAwesomeIcon icon={faBars} />
                 </button>
             </div>
@@ -52,7 +52,10 @@ const AdminTopbar = () => {
 
             <div className="topbar-right">
                 <div className="user-info">
-                    <img src={userProfile?.profileUrl} alt="User" className="profile-image" />
+                    <img
+                        src={userProfile?.profileUrl}
+                        alt="User"
+                        className="profile-image" />
                 </div>
 
                 <div className="profile-info">

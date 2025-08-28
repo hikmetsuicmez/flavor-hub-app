@@ -13,12 +13,12 @@ const AdminSidebar = () => {
     const location = useLocation();
 
     return (
-        <div>
-            <div>
-                <h2>Admin Panel</h2>
+        <div className="admin-sidebar">
+            <div className="sidebar-header">
+                <h2 className="sidebar-header">Admin Panel</h2>
             </div>
 
-            <nav>
+            <nav className="sidebar-nav">
                 <ul>
                     <li>
                         <NavLink
@@ -31,34 +31,34 @@ const AdminSidebar = () => {
                     </li>
                     <li>
                         <NavLink
-                            to="/admin"
+                            to="/admin/categories"
                             className={location.pathname.includes("/admin/categories") ? "active" : ""}
                             end>
-                            <FontAwesomeIcon icon={faChartLine} />
+                            <FontAwesomeIcon icon={faList} />
                             <span>Kategoriler</span>
                         </NavLink>
                     </li><li>
                         <NavLink
-                            to="/admin"
+                            to="/admin/menu-items"
                             className={location.pathname.includes("/admin/menu-items") ? "active" : ""}
                             end>
-                            <FontAwesomeIcon icon={faChartLine} />
+                            <FontAwesomeIcon icon={faUtensils} />
                             <span>Menü Öğeleri</span>
                         </NavLink>
                     </li><li>
                         <NavLink
-                            to="/admin"
+                            to="/admin/orders"
                             className={location.pathname.includes("/admin/orders") ? "active" : ""}
                             end>
-                            <FontAwesomeIcon icon={faChartLine} />
+                            <FontAwesomeIcon icon={faShoppingBag} />
                             <span>Siparişler</span>
                         </NavLink>
                     </li><li>
                         <NavLink
-                            to="/admin"
+                            to="/admin/payments"
                             className={location.pathname.includes("/admin/payments") ? "active" : ""}
                             end>
-                            <FontAwesomeIcon icon={faChartLine} />
+                            <FontAwesomeIcon icon={faCreditCard} />
                             <span>Ödemeler</span>
                         </NavLink>
                     </li>

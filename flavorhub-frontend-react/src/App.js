@@ -14,6 +14,7 @@ import LeaveReviewPage from "./components/profile_cart/LeaveReviewPage";
 import CartPage from "./components/profile_cart/CartPage";
 import ProcessPaymentPage from "./components/payment/ProcessPaymentPage";
 import { AdminRoute, CustomerRoute } from "./services/Guard";
+import AdminLayout from "./components/admin/navbar/AdminLayout";
 
 function App() {
   return (
