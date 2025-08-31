@@ -17,6 +17,8 @@ import { AdminRoute, CustomerRoute } from "./services/Guard";
 import AdminLayout from "./components/admin/navbar/AdminLayout";
 import AdminCategoriesPage from "./components/admin/AdminCategoriesPage";
 import AdminCategoryFormPage from "./components/admin/AdmingCategoryFormPage";
+import AdminMenuPage from "./components/admin/AdminMenuPage";
+
 
 function App() {
   return (
@@ -63,6 +65,7 @@ function App() {
             <Route path="categories" element={<AdminCategoriesPage />} />
             <Route path="categories/new" element={<AdminCategoryFormPage />} />
             <Route path="categories/edit/:categoryId" element={<AdminCategoryFormPage />} />
+            <Route path="menu-items" element={<AdminMenuPage />} />
 
           </Route>
 
