@@ -18,7 +18,7 @@ const AdminSidebar = () => {
                 <h2 className="sidebar-header">Admin Panel</h2>
             </div>
 
-            <nav className="sidebar-nav">
+            <div className="sidebar-nav">
                 <ul>
                     <li>
                         <NavLink
@@ -63,7 +63,7 @@ const AdminSidebar = () => {
                         </NavLink>
                     </li>
                 </ul>
-            </nav>
+            </div>
         </div>
     )
 }
